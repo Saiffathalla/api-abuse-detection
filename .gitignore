@@ -9,10 +9,10 @@ venv/
 # Jupyter
 .ipynb_checkpoints/
 
-# Large model files (optional — remove these lines if you want to upload models)
-models/*.joblib
-models/*.pkl
-models/*.h5
+# Large model files — commented out so Streamlit can load them
+# models/*.joblib
+# models/*.pkl
+# models/*.h5
 
 # OS
 .DS_Store
