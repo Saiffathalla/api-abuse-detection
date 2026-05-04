@@ -12,7 +12,6 @@ import os
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="REST API Abuse Detection",
-    page_icon="🛡️",
     layout="wide"
 )
 
@@ -22,11 +21,11 @@ FIGURES_DIR = os.path.join(BASE_DIR, 'outputs', 'figures')
 MODELS_DIR  = os.path.join(BASE_DIR, 'models')
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
-st.sidebar.title("🛡️ API Abuse Detection")
+st.sidebar.title("API Abuse Detection")
 st.sidebar.markdown("**IEEE CloudCom 2021**")
 page = st.sidebar.radio(
     "Navigate",
-    ["🏠 Overview", "📊 EDA", "🤖 Model Results", "🔮 Live Prediction"]
+    ["Overview", "EDA", "Model Results", "Live Prediction"]
 )
 
 # ── Load data ─────────────────────────────────────────────────────────────────
@@ -59,8 +58,8 @@ def show_figure(filename):
 # ==============================================================================
 # PAGE 1 — Overview
 # ==============================================================================
-if page == "🏠 Overview":
-    st.title("🛡️ REST API Abuse Detection")
+if page == "Overview":
+    st.title("REST API Abuse Detection")
     st.subheader("Using Request Pattern Analysis & Machine Learning")
     st.markdown("""
     > **Reference:** IEEE CloudCom 2021 — *"API Security Threat Detection Using Machine Learning"*
@@ -115,8 +114,8 @@ if page == "🏠 Overview":
 # ==============================================================================
 # PAGE 2 — EDA
 # ==============================================================================
-elif page == "📊 EDA":
-    st.title("📊 Exploratory Data Analysis")
+elif page == "EDA":
+    st.title("Exploratory Data Analysis")
 
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "Distributions", "Numerical", "Boxplots", "Correlation", "Attack x Severity"
@@ -151,8 +150,8 @@ elif page == "📊 EDA":
 # ==============================================================================
 # PAGE 3 — Model Results
 # ==============================================================================
-elif page == "🤖 Model Results":
-    st.title("🤖 Model Training & Evaluation")
+elif page == "Model Results":
+    st.title("Model Training & Evaluation")
 
     # Summary table
     results = {
@@ -192,8 +191,8 @@ elif page == "🤖 Model Results":
 # ==============================================================================
 # PAGE 4 — Live Prediction
 # ==============================================================================
-elif page == "🔮 Live Prediction":
-    st.title("🔮 Live Attack Type Prediction")
+elif page == "Live Prediction":
+    st.title("Live Attack Type Prediction")
 
     if model is None:
         st.error("Model files not found. Run `python main.py` first to train and save the models.")
@@ -216,7 +215,7 @@ elif page == "🔮 Live Prediction":
                                        format_func=lambda x: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][x])
         year            = st.selectbox("Year", [2019, 2020, 2021, 2022, 2023, 2024])
 
-    if st.button("🔍 Predict Attack Type", type="primary"):
+    if st.button("Predict Attack Type", type="primary"):
         SEVERITY_MAP = {'Low': 0, 'Medium': 1, 'High': 2, 'Critical': 3}
         severity_num = SEVERITY_MAP[severity]
         log_damage   = np.log1p(damage)
