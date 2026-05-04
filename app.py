@@ -226,11 +226,6 @@ elif page == "🔮 Live Prediction":
         quarter      = (month - 1) // 3 + 1
         high_damage  = int(damage >= df['Damage_Estimate(USD)'].quantile(0.75))
 
-        ind_risk = df.groupby('Target_Industry')['Severity'].map(SEVERITY_MAP).groupby(df['Target_Industry']).mean()
-        loc_risk = df.groupby('Location')['Severity'].map(SEVERITY_MAP).groupby(df['Location']).mean()
-        ind_freq = df['Target_Industry'].value_counts(normalize=True)
-        loc_freq = df['Location'].value_counts(normalize=True)
-
         industry_risk_score = df[df['Target_Industry'] == target_industry]['Severity'].map(SEVERITY_MAP).mean()
         location_risk_score = df[df['Location'] == location]['Severity'].map(SEVERITY_MAP).mean()
         industry_freq_score = (df['Target_Industry'] == target_industry).sum() / len(df)
